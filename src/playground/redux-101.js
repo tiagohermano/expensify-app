@@ -53,4 +53,4 @@ store.dispatch(decrementCount({ decrementBy: 10 }));
 
 store.dispatch(resetCount());
 
-store.dispatch(set({ count: 101 }));
+store.dispatch(setCount({ count: 101 }));
