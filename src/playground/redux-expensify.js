@@ -128,6 +128,12 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
 
     return textMatch && startDateMatch && endDateMatch;
+  }).sort((a,b) => {
+    if(sortBy === 'date') {
+      return a.createdAt < b.createdAt ? 1 : -1;
+    } else {
+      return a.amount < b.amount ? 1 : -1;
+    }
   });
 };
 
@@ -146,11 +152,13 @@ store.subscribe(() => {
 
 store.dispatch(addExpense({ description: 'Rent', amount: 100, createdAt: 1000 }));
 store.dispatch(addExpense({ description: 'Coffee', amount: 200, createdAt: -1000 }));
+store.dispatch(addExpense({ description: 'Food', amount: 150, createdAt: -2100 }));
 //
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
-store.dispatch(setTextFilter('coffee'));
-// store.dispatch(sortByDate());
+// store.dispatch(setTextFilter('coffee'));
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
 // store.dispatch(setStartDate(125));
 // store.dispatch(setEndDate(1250));
 
