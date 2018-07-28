@@ -42,9 +42,8 @@ firebase.auth().onAuthStateChanged((user) => {
     });
   } else {
     store.dispatch(logout());
-    console.log('Usuário deslogado');
     renderApp();
     history.push('/');
-    console.log('Usuário logado');
+    console.log('Usuário deslogado');
   }
 });
